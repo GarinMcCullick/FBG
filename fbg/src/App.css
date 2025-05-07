@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/****************************************************************************************************Nav Component*****************************************************************************************************/
+.nav {
+  position: fixed;
+  top: 0.5rem;
+  left: 0;
+  width: 100vw; /* Full width */
+  max-width: 100vw;
+  height: 60px; /* Navbar height */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  z-index: 1000; /* Ensure it stays above other elements */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.nav-logo,
+.nav-logo-link {
+  font-size: 1.8rem;
+  font-weight: bold;
   color: white;
+  text-decoration: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 10%;
+  max-width: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s ease; /* Smooth transition for rotation */
+  pointer-events: all; /* Ensure hover works even over the gap */
 }
 
-.App-link {
-  color: #61dafb;
+.nav-logo:hover {
+  animation: rotateBackAndForth 2s ease-in-out infinite; /* Slower back and forth rotation */
+  pointer-events: all; /* Ensure hover works even over the gap */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav-logo:not(:hover) {
+  animation: none; /* Stop animation when not hovered */
+  transition: transform 1s ease; /* Smoothly transition back */
+  animation: none; /* Stop animation when not hovered */
+}
+
+@keyframes rotateBackAndForth {
+  0% {
+    transform: rotate(0deg); /* Start at normal position */
   }
-  to {
-    transform: rotate(360deg);
+  20% {
+    transform: rotate(7deg); /* Rotate 7 degrees */
+  }
+  80% {
+    transform: rotate(-7deg); /* Rotate -7 degrees */
+  }
+  100% {
+    transform: rotate(0deg); /* Return to normal position */
   }
 }
+
+.nav-logo-link img {
+  margin-right: 1.5rem;
+}
+.nav-links-list {
+  justify-content: center;
+  align-items: center;
+  list-style: none; /* Remove default list styles */
+  display: flex;
+  width: 90%;
+  max-width: 90%;
+  padding-right: 10%;
+  gap: 60px; /* Space between items */
+}
+
+.nav-links {
+  color: white;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links:hover {
+  color: #00bcd4; /* Highlight color on hover */
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    padding: 10px 0;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}
+/****************************************************************************************************LANDING PAGE*****************************************************************************************************/
+.landing-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./assets/FBGNIGHT.jpg");
+  background-size: cover; /* Ensure full coverage */
+  background-repeat: no-repeat;
+  background-position: center 0%; /* Move the image down */
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white; /* Text color for better visibility */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Font family for the text */
+  font-weight: 700;
+  font-size: 4rem;
+  letter-spacing: 4px;
+}
+
+/* Radial gradient overlay from outside in */
+.landing-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.9) 80%
+  ); /* Transparent to matte grey */
+  z-index: 1; /* Overlay sits above the background image */
+}
+
+/* Content above the overlay */
+.landing-page > * {
+  position: relative;
+  z-index: 2; /* Content sits above the overlay */
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7),
+    /* Shadow for 3D effect */ 0 8px 12px rgba(0, 0, 0, 0.5),
+    0 12px 18px rgba(0, 0, 0, 0.3);
+  transform: perspective(500px); /* Create 3D rotation effect */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .landing-page {
+    background-position: center; /* Adjust background for smaller screens */
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+  z-index: 1; /* Behind the content */
+}
+
+/****************************************************************************************************Auth PAGE*****************************************************************************************************/
