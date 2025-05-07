@@ -113,6 +113,34 @@
 /****************************************************************************************************LANDING PAGE*****************************************************************************************************/
 .landing-page {
   position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.landing-video-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Ensure the video stays behind the content */
+  overflow: hidden;
+}
+
+.landing-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevent interaction with the iframe */
+  object-fit: cover; /* Ensures the video covers the entire banner */
+}
+
+/****************************************************************************************************APPLY PAGE*****************************************************************************************************/
+.apply-page {
+  position: relative;
   width: 100vw;
   height: 100vh;
   background-image: url("./assets/FBGNIGHT.jpg");
@@ -132,7 +160,7 @@
 }
 
 /* Radial gradient overlay from outside in */
-.landing-page::after {
+.apply-page::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -145,7 +173,7 @@
 }
 
 /* Content above the overlay */
-.landing-page > * {
+.apply-page > * {
   position: relative;
   z-index: 2; /* Content sits above the overlay */
   text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7),
@@ -156,18 +184,18 @@
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .landing-page {
+  .apply-page {
     background-position: center; /* Adjust background for smaller screens */
   }
 }
 
-.overlay {
+.apply-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   z-index: 1; /* Behind the content */
 }
 

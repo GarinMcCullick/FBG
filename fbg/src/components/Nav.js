@@ -1,39 +1,40 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link
 import "../App.css";
 
 const Nav = () => {
   return (
     <nav className="nav">
       <div className="nav-logo">
-        <a href="#home" className="nav-logo-link">
+        <Link to="/" className="nav-logo-link">
           <img
             src={require("../assets/FROGBOOTS.png")}
             style={{ width: "2rem" }}
             alt="Frog Boots Logo"
           />
           FBG
-        </a>
+        </Link>
       </div>
       <ul className="nav-links-list">
         <li className="nav-item">
-          <a href="#home" className="nav-links">
+          <Link to="/" className="nav-links">
             Home
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#about" className="nav-links">
-            About
-          </a>
+          <Link to="/apply" className="nav-links">
+            Apply
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#services" className="nav-links">
+          <Link to="/services" className="nav-links">
             Services
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#contact" className="nav-links">
+          <Link to="/contact" className="nav-links">
             Contact
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
