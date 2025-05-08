@@ -1,8 +1,11 @@
 import React from "react";
 import "../App.css";
 import LandingGallerySlider from "../components/LandingGallerySlider";
+import { getQuoteOfTheDay } from "../helpers/quoteHelper";
 
 const Landing = () => {
+  const { quote, gamertag } = getQuoteOfTheDay();
+
   return (
     <div>
       <div className="landing-page">
@@ -23,11 +26,8 @@ const Landing = () => {
           </a>
           <div className="quote-of-the-day">
             <h2>Quote of the Day</h2>
-            <p>
-              "The only limit to our realization of tomorrow is our doubts of
-              today."
-            </p>
-            <p>- Franklin D. Roosevelt</p>
+            <p>"{quote}"</p>
+            <p>- {gamertag}</p>
           </div>
           <div className="collage-slider-container">
             <LandingGallerySlider />

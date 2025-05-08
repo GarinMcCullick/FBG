@@ -4,6 +4,7 @@ import "./App.css";
 import Landing from "./pages/Landing";
 import Nav from "./components/Nav";
 import Apply from "./pages/Apply.js"; // Import Apply component
+import FAQs from "./pages/FAQs.js";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/apply" element={<Apply />} />
-        <Route path="/services" element={<div>Services Page</div>} />
+        <Route path="/faqs" element={<FAQs />} />
         <Route path="/contact" element={<div>Contact Page</div>} />
       </Routes>
     </div>

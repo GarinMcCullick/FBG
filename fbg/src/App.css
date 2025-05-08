@@ -2,7 +2,7 @@
 .nav {
   position: fixed;
   left: 0;
-  width: 100vw; /* Full width */
+  width: 100%; /* Full width */
   max-width: 100vw;
   height: 4rem; /* Navbar height */
   display: flex;
@@ -166,11 +166,13 @@
 .landing-content h1 {
   font-size: 3rem;
   margin-bottom: 10px;
+  animation: slideFadeUp 0.8s ease-out 0s; /* Add animation with no delay */
 }
 
 .landing-content p {
   font-size: 1.5rem;
   margin-bottom: 20px;
+  animation: slideFadeUp 0.8s ease-out 0.3s; /* Add animation with a delay */
 }
 
 .landing-content .btn {
@@ -184,6 +186,19 @@
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
+  animation: slideFadeUp 0.8s ease-out 0.6s; /* Add animation with a longer delay */
+}
+
+/* Keyframes for slide fade up animation */
+@keyframes slideFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Start slightly below */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* End at the original position */
+  }
 }
 
 .landing-content .btn:hover {
@@ -197,11 +212,21 @@
   height: auto;
   background-color: #f5f5f5;
   color: #121212;
-  padding: 2rem;
-  border-radius: 12px; /* Rounded corners for a modern look */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.1); /* Lifting effect */
+  padding: 4rem 2rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.1);
   position: relative;
+  clip-path: polygon(
+    0 10%,
+    10% 0%,
+    90% 0%,
+    100% 10%,
+    100% 90%,
+    90% 100%,
+    10% 100%,
+    0% 90%
+  );
 }
+
 /**********************************collage slider*********************************/
 /* General styles for the slider container */
 .collage-slider-container {
@@ -403,10 +428,23 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
   color: #f5f5f5;
   padding: 2rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem; /* Space between form elements */
   border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for definition */
+  animation: slideFadeIn 0.8s ease-out; /* Add slide fade-in animation */
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px); /* Start slightly off-screen to the left */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* End at the original position */
+  }
 }
 
 .apply-form label {
@@ -542,4 +580,99 @@
 .apply-form input[type="checkbox"] {
   width: auto;
   margin-right: 0.5rem;
+}
+/****************************************************************************************************FAQs PAGE*****************************************************************************************************/
+.faqs-container {
+  width: 100%;
+  overflow-x: hidden;
+  height: auto;
+  padding-top: 6rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #1e1e2f, #121212);
+  color: #f5f5f5;
+  padding-bottom: 4rem;
+  animation: fadeIn 1s ease-out;
+}
+
+.faqs-title {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  color: #00bcd4;
+  text-shadow: 0 4px 12px rgba(0, 188, 212, 0.5);
+  letter-spacing: 1px;
+  animation: slideDown 0.6s ease-out;
+}
+
+.faqs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+  max-width: 800px;
+}
+
+.faqs-item {
+  background: rgba(255, 255, 255, 0.08);
+  border-left: 4px solid #00bcd4;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.faqs-item:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.faqs-question {
+  font-size: 1.6rem;
+  margin: 0 0 10px;
+  font-weight: bold;
+  color: #00e5ff;
+  position: relative;
+}
+
+.faqs-question::after {
+  content: "❓";
+  position: absolute;
+  right: -30px;
+  top: 0;
+  font-size: 1.2rem;
+  color: #00e5ff;
+  opacity: 0.5;
+}
+
+.faqs-answer {
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.6;
+  color: #dddddd;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
