@@ -1,16 +1,17 @@
 /****************************************************************************************************Nav Component*****************************************************************************************************/
 .nav {
   position: fixed;
-  top: 0.5rem;
   left: 0;
   width: 100vw; /* Full width */
   max-width: 100vw;
-  height: 60px; /* Navbar height */
+  height: 4rem; /* Navbar height */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000; /* Ensure it stays above other elements */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px); /* Blur effect */
 }
 
 .nav-logo,
@@ -111,55 +112,257 @@
   }
 }
 /****************************************************************************************************LANDING PAGE*****************************************************************************************************/
+/* General landing page styles */
 .landing-page {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: auto;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  background: none; /* Remove the radial gradient */
 }
 
+/* Video banner styles */
 .landing-video-banner {
-  position: absolute;
-  top: 0;
+  position: fixed; /* Fix the video banner in place */
+  top: 4rem;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1; /* Ensure the video stays behind the content */
+  height: 70vh; /* Limit the video to 60% of the viewport height */
   overflow: hidden;
+  z-index: -1; /* Place it behind other content */
 }
 
 .landing-video {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Prevent interaction with the iframe */
-  object-fit: cover; /* Ensures the video covers the entire banner */
+  object-fit: cover;
+  clip-path: polygon(0 80px, 100% 0, 100% calc(100% - 80px), 0 100%);
 }
 
+/* Content section styles */
+.landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Ensure it scrolls normally */
+  text-align: center;
+  margin-top: 70vh; /* Start below the video */
+  padding-top: 5vh;
+  z-index: 1; /* Place it above the video */
+  background-color: #121212;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(
+    0 80px,
+    /* Left side lower */ 100% 0,
+    /* Right side higher */ 100% 100%,
+    0 100%
+  );
+}
+
+.landing-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.landing-content p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.landing-content .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: bold;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.landing-content .btn:hover {
+  background-color: #0056b3;
+}
+
+.quote-of-the-day {
+  margin-top: 5rem;
+  align-self: center;
+  width: 50%;
+  height: auto;
+  background-color: #f5f5f5;
+  color: #121212;
+  padding: 2rem;
+  border-radius: 12px; /* Rounded corners for a modern look */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.1); /* Lifting effect */
+  position: relative;
+}
+/**********************************collage slider*********************************/
+/* General styles for the slider container */
+.collage-slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  width: 80%; /* Full width */
+  height: auto; /* Full height */
+  overflow: hidden; /* Prevent overflow */
+  position: relative; /* For positioning buttons within this container */
+}
+
+.gallery-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.collage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 350px));
+  gap: 10px;
+  width: 100%;
+}
+
+.collage-tile {
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #222;
+  min-width: 250px;
+}
+
+.collage-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.collage-tile img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Random layout sizing */
+.size-1 {
+  grid-column: span 1;
+  grid-row: span 1;
+  aspect-ratio: 1 / 1;
+}
+.size-2 {
+  grid-column: span 2;
+  grid-row: span 1;
+  aspect-ratio: 2 / 1;
+}
+.size-3 {
+  grid-column: span 1;
+  grid-row: span 2;
+  aspect-ratio: 1 / 1.5;
+}
+.size-4 {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 2 / 2;
+}
+.size-5 {
+  grid-column: span 3;
+  grid-row: span 1;
+  aspect-ratio: 3 / 2;
+}
+
+.collage-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #121212;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.collage-button:hover {
+  background-color: #0056b3;
+}
+/********************************overlay modal gallery****************************/
+/* Overlay background when modal is open */
+.nav.hidden {
+  display: none !important; /* Forcefully hides the nav */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content styling */
+.modal-content {
+  position: relative;
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden;
+}
+
+/* Image in the modal */
+.modal-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Close button (X) */
+.close-modal {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 4rem;
+  background: none;
+  border: none;
+  color: #f5f5f5;
+  background-color: #121212;
+  cursor: pointer;
+}
+
+/* When hovering over the close button, change color */
+.close-modal:hover {
+  color: red;
+}
 /****************************************************************************************************APPLY PAGE*****************************************************************************************************/
 .apply-page {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-image: url("./assets/FBGNIGHT.jpg");
-  background-size: cover; /* Ensure full coverage */
-  background-repeat: no-repeat;
-  background-position: center 0%; /* Move the image down */
-  background-color: black;
   display: flex;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
-  color: white; /* Text color for better visibility */
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Font family for the text */
-  font-weight: 700;
-  font-size: 4rem;
-  letter-spacing: 4px;
+  align-items: flex-start; /* Align content at the top */
+  width: 100%;
+  min-height: 100vh; /* Allow the page to grow beyond the viewport */
+  overflow-x: hidden; /* Enable vertical scrolling */
+  background-image: url("./assets/FBGNIGHT.jpg"); /* Restore FBGNIGHT background */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-position: center 0%; /* Center the background image */
+  padding: 2rem 0; /* Add padding for spacing */
 }
 
-/* Radial gradient overlay from outside in */
+/* Radial gradient overlay */
 .apply-page::after {
   content: "";
   position: absolute;
@@ -170,33 +373,173 @@
     rgba(0, 0, 0, 0.9) 80%
   ); /* Transparent to matte grey */
   z-index: 1; /* Overlay sits above the background image */
+  pointer-events: none; /* Prevent interaction with the overlay */
 }
 
 /* Content above the overlay */
 .apply-page > * {
   position: relative;
   z-index: 2; /* Content sits above the overlay */
-  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7),
-    /* Shadow for 3D effect */ 0 8px 12px rgba(0, 0, 0, 0.5),
-    0 12px 18px rgba(0, 0, 0, 0.3);
-  transform: perspective(500px); /* Create 3D rotation effect */
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7), 0 8px 12px rgba(0, 0, 0, 0.5),
+    0 12px 18px rgba(0, 0, 0, 0.3); /* Add shadow for better visibility */
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .apply-page {
-    background-position: center; /* Adjust background for smaller screens */
-  }
+.apply-content {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem 0; /* Add padding for spacing */
 }
 
-.apply-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+.apply-form {
+  width: 80%;
+  max-width: 700px; /* Limit the form width for better readability */
+  height: 90%;
+  border-radius: 1.5rem; /* Rounded corners */
+  background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+  backdrop-filter: blur(10px); /* Blur effect for the background */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+  color: #f5f5f5;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between form elements */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for definition */
+}
+
+.apply-form label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.apply-form input,
+.apply-form textarea,
+.apply-form select {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-  z-index: 1; /* Behind the content */
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #121212;
+  background: rgba(255, 255, 255, 0.9); /* Light background for inputs */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Subtle border */
+  border-radius: 0.5rem; /* Rounded corners */
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-/****************************************************************************************************Auth PAGE*****************************************************************************************************/
+.apply-form input:focus,
+.apply-form textarea:focus,
+.apply-form select:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect */
+}
+
+.apply-form textarea {
+  resize: none; /* Prevent resizing */
+  height: 100px; /* Set a fixed height */
+}
+
+.apply-form button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(90deg, #007bff, #00bcd4); /* Gradient button */
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.apply-form button:hover {
+  background: linear-gradient(
+    90deg,
+    #0056b3,
+    #008c9e
+  ); /* Darker gradient on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.apply-form input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.apply-form label input/* filepath: c:\Users\GordanRamsey\Desktop\FBG\fbg\src\App.css */
+.apply-form {
+  width: 80%;
+  max-width: 600px; /* Limit the form width for better readability */
+  height: auto;
+  border-radius: 1.5rem; /* Rounded corners */
+  background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+  backdrop-filter: blur(10px); /* Blur effect for the background */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+  color: #f5f5f5;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between form elements */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for definition */
+}
+
+.apply-form label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.apply-form input,
+.apply-form textarea,
+.apply-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #121212;
+  background: rgba(255, 255, 255, 0.9); /* Light background for inputs */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Subtle border */
+  border-radius: 0.5rem; /* Rounded corners */
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.apply-form input:focus,
+.apply-form textarea:focus,
+.apply-form select:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect */
+}
+
+.apply-form textarea {
+  resize: none; /* Prevent resizing */
+  height: 100px; /* Set a fixed height */
+}
+
+.apply-form button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(90deg, #007bff, #00bcd4); /* Gradient button */
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.apply-form button:hover {
+  background: linear-gradient(
+    90deg,
+    #0056b3,
+    #008c9e
+  ); /* Darker gradient on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.apply-form input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
