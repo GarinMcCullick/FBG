@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../App.css"; // Ensure styles are correctly included
+import { addMoreImages, getRandomBatch } from "../handlers/LandingHandlers";
 
 const allImages = [
   require("../assets/clan1.jpg"),
@@ -14,14 +15,10 @@ const allImages = [
   // Add more image imports here
 ];
 
-// Randomly pick a batch of N images
-const getRandomBatch = (count = 6) => {
-  const shuffled = [...allImages].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-};
-
 const LandingGallerySlider = () => {
-  const [galleryImages, setGalleryImages] = useState(getRandomBatch());
+  const [galleryImages, setGalleryImages] = useState(() =>
+    getRandomBatch(allImages)
+  );
   const [clickCount, setClickCount] = useState(0); // Track the number of clicks
   const [isModalOpen, setIsModalOpen] = useState(false); // To control modal visibility
   const [modalImage, setModalImage] = useState(""); // Store the image to display in the modal
@@ -54,24 +51,6 @@ const LandingGallerySlider = () => {
     };
   }, [isModalOpen]);
 
-  const addMoreImages = () => {
-    if (clickCount < 4) {
-      const newImages = getRandomBatch();
-      setGalleryImages((prev) => [...prev, ...newImages]);
-      setClickCount((prev) => prev + 1); // Increment the click count
-
-      // Scroll to the button's new position, ensuring smooth scroll
-      setTimeout(() => {
-        if (buttonRef.current) {
-          buttonRef.current.scrollIntoView({
-            behavior: "smooth",
-            block: "start", // Scroll to the top of the button
-          });
-        }
-      }, 100); // Small delay to make sure images are loaded first
-    }
-  };
-
   // Open the modal with the clicked image
   const openModal = (imageSrc) => {
     setModalImage(imageSrc);
@@ -100,7 +79,16 @@ const LandingGallerySlider = () => {
         <button
           className="collage-button"
           ref={buttonRef} // Reference to the button
-          onClick={addMoreImages}
+          onClick={() =>
+            addMoreImages(
+              clickCount,
+              setClickCount,
+              setGalleryImages,
+              buttonRef,
+              getRandomBatch,
+              allImages
+            )
+          }
         >
           Show More
         </button>
