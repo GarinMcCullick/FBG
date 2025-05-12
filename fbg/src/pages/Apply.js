@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import ApplyLoginOverlay from "../components/ApplyLoginOverlay";
+import { useAuth } from "../context/AuthContext"; // Import the AuthContext hook
 
 const Apply = () => {
-  const isLoggedIn = false;
+  const { user, checking } = useAuth(); // Access user and checking states from the context
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (!checking) {
+      setIsLoggedIn(!!user); // Set isLoggedIn to true if user exists, otherwise false
+    }
+  }, [user, checking]); // Re-run when user or checking state changes
+
   return (
     <div className="apply-page">
       <div className="apply-content">
@@ -17,19 +26,24 @@ const Apply = () => {
                 <input
                   type="number"
                   name="hoursPlayed"
+                  required
                   placeholder="Enter hours played"
                 />
               </label>
               <label>
                 Clan History:
                 <textarea
+                  required
                   name="clanHistory"
                   placeholder="Describe your clan history"
                 ></textarea>
               </label>
               <label>
                 Play Style:
-                <select name="playStyle">
+                <select required name="playStyle">
+                  <option value="select" disabled selected>
+                    select
+                  </option>
                   <option value="pvp">PvP</option>
                   <option value="raiding">Raiding</option>
                   <option value="farming">Farming</option>
@@ -39,6 +53,7 @@ const Apply = () => {
               <label>
                 Steam Profile Link:
                 <input
+                  required
                   type="url"
                   name="steamProfile"
                   placeholder="Enter your Steam profile link"
@@ -46,7 +61,7 @@ const Apply = () => {
               </label>
               <label>
                 Country:
-                <select name="country">
+                <select required name="country">
                   <option value="select" disabled selected>
                     Select your country
                   </option>
@@ -67,13 +82,14 @@ const Apply = () => {
               <label>
                 Why Do You Want to Join?:
                 <textarea
+                  required
                   name="whyJoin"
                   placeholder="Explain why you want to join FBG"
                 ></textarea>
               </label>
               <label>
                 How Many Hours a Week Can You Play?:
-                <select name="hoursPerWeek">
+                <select required name="hoursPerWeek">
                   <option value="select" disabled selected>
                     select
                   </option>
@@ -86,20 +102,20 @@ const Apply = () => {
               </label>
               <label>
                 Are You Fluent in English?:
-                <input type="checkbox" name="englishFluent" />
+                <input required type="checkbox" name="englishFluent" />
               </label>
               <label>
                 Willing to Use Mic:
-                <input type="checkbox" name="useMic" />
+                <input required type="checkbox" name="useMic" />
               </label>
               <label>
                 Are You 21 or Older?:
-                <input type="checkbox" name="age21Plus" />
+                <input required type="checkbox" name="age21Plus" />
               </label>
               <label>
                 Agree to Rules (No hacking, cheating, exploiting, VAC bans,
                 willing to be a team player, and must have at least 3k hours):
-                <input type="checkbox" name="agreeToRules" />
+                <input required type="checkbox" name="agreeToRules" />
               </label>
 
               <button type="submit" className="apply-button">
