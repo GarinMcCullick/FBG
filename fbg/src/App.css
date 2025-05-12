@@ -569,6 +569,53 @@
   width: auto;
   margin-right: 0.5rem;
 }
+/************************Status Pages*********************/
+/* ----- Pending ----- */
+.status-pending {
+  background: linear-gradient(135deg, #f0ad4e, #f7c873); /* orange/gold */
+  color: #fff;
+}
+
+.status-pending-card {
+  border: 1px solid rgba(240, 173, 78, 0.4);
+  animation: pulseGlow 2s infinite;
+}
+
+/* ----- Accepted ----- */
+.status-accepted {
+  background: linear-gradient(135deg, #5cb85c, #91e691); /* green shades */
+  color: #fff;
+}
+
+.status-accepted-card {
+  border: 1px solid rgba(92, 184, 92, 0.4);
+  box-shadow: 0 0 20px rgba(92, 184, 92, 0.3);
+}
+
+/* ----- Denied ----- */
+.status-denied {
+  background: linear-gradient(135deg, #d9534f, #ff7e79); /* red/pink */
+  color: #fff;
+}
+
+.status-denied-card {
+  border: 1px solid rgba(217, 83, 79, 0.4);
+  box-shadow: 0 0 20px rgba(217, 83, 79, 0.3);
+}
+
+/* ----- Shared Animation ----- */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+  }
+}
+
 /****************************************************************************************************FAQs PAGE*****************************************************************************************************/
 .faqs-container {
   width: 100%;
