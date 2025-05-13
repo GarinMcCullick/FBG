@@ -50,12 +50,18 @@ const ApplyStatusOverlay = ({ status }) => {
       </p>
 
       {status === "accepted" && (
-        <button className="discord-login-button" type="button">
-          <span className="discord-icon">
-            <FaDiscord />
-          </span>
-          Login with Discord
-        </button>
+        <a
+          href="https://discord.gg/tTvTwybhCM"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="discord-login-button" type="button">
+            <span className="discord-icon">
+              <FaDiscord />
+            </span>
+            Login with Discord
+          </button>
+        </a>
       )}
     </div>
   );

@@ -45,42 +45,46 @@ export const handleApplyChange = (e, formData, setFormData) => {
   });
 };
 
-// Function to handle form submission
-export const handleApplySubmit = async (e, formData, user, setSubmitting) => {
-  e.preventDefault(); // Prevent default form submission
+export const handleApplySubmit = async (
+  e,
+  formData,
+  user,
+  setSubmitting,
+  setApplicationStatus // <-- Add this
+) => {
+  e.preventDefault();
 
-  // Check if the user is logged in with Discord
   if (!user || !user.id) {
     console.log("User not logged in:", user);
     alert("You must be logged in with Discord to submit an application.");
     return;
   }
 
-  setSubmitting(true); // Set submitting state to true to show loading state
+  setSubmitting(true);
 
   try {
-    // Send POST request with application data
     const response = await axios.post(
-      "http://localhost:5000/apply", // Update to your API endpoint
+      "http://localhost:5000/apply",
       {
         ...formData,
-        id: user.id, // Attach discord_id to the application data
+        id: user.id,
       },
       {
-        withCredentials: true, // Include cookies if necessary
+        withCredentials: true,
       }
     );
 
     if (response.status === 200) {
-      alert("Application submitted successfully!");
+      const status = response.data.status || "pending"; // or whatever your backend sends
+      sessionStorage.setItem("applicationStatus", status);
+      setApplicationStatus(status); // ✅ Update status in the frontend
     } else {
       alert("Something went wrong. Please try again.");
     }
   } catch (err) {
-    // Handle error during submission
     console.error("Submission error:", err);
     alert("Failed to submit application.");
   } finally {
-    setSubmitting(false); // Set submitting state back to false
+    setSubmitting(false);
   }
 };

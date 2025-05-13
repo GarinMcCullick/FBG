@@ -33,7 +33,7 @@ const Apply = () => {
     fetchStatus();
   }, [user]); // Only run when the user changes
 
-  if (checking || statusLoading) return <Loader />; // ⬅️ Show only loader during auth/status check
+  if (checking || statusLoading || submitting) return <Loader />;
 
   // Logic to determine what to display based on user and application status
   return (
@@ -42,7 +42,15 @@ const Apply = () => {
         <form
           className="apply-form"
           id={sessionStorage.getItem("applicationStatus")}
-          onSubmit={(e) => handleApplySubmit(e, formData, user, setSubmitting)}
+          onSubmit={(e) =>
+            handleApplySubmit(
+              e,
+              formData,
+              user,
+              setSubmitting,
+              setApplicationStatus
+            )
+          }
         >
           {!user ? (
             <ApplyLoginOverlay /> // Show login overlay if no user is found
