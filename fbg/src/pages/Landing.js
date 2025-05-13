@@ -3,7 +3,7 @@ import "../App.css";
 import LandingGallerySlider from "../components/LandingGallerySlider";
 import { getQuoteOfTheDay } from "../helpers/quoteHelper";
 import FloatingEmojiBackground from "../components/FloatingEmojiBackground";
-import AK from "../assets/Assault_Rifle_icon.webp";
+import ak from "../assets/Assault_Rifle_icon.webp";
 import thompson from "../assets/Thompson_icon.webp";
 import m2 from "../assets/M249_icon.webp";
 import chestpiece from "../assets/Metal_Chest_Plate_icon.webp";
@@ -26,7 +26,7 @@ const Landing = () => {
         </div>
         <div className="landing-content">
           <FloatingEmojiBackground
-            imageSrcs={[AK, thompson, m2, chestpiece, facemask]}
+            imageSrcs={[ak, thompson, m2, chestpiece, facemask]}
             count={60}
           />
           <h1>Welcome to FBG</h1>
