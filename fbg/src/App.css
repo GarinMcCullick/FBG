@@ -364,20 +364,65 @@
 /* Close button (X) */
 .close-modal {
   position: absolute;
-  top: 30px;
-  right: 30px;
-  font-size: 4rem;
-  background: none;
+  top: 40px;
+  right: 40px;
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+  font-weight: bold;
+  background: rgba(31, 31, 31, 0.6);
   border: none;
+  border-radius: 50%;
   color: #f5f5f5;
-  background-color: #121212;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* When hovering over the close button, change color */
+/* When hovering over the close button, change color and scale slightly */
 .close-modal:hover {
-  color: red;
+  background-color: rgb(7, 6, 6);
+  color: #ff4d4d;
+  transform: scale(1.1);
 }
+/******************************************************************************************************LOADER *********************************************/
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Ensure it stays in the center of the viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; /* Full viewport height */
+  z-index: 9999; /* Ensure it appears above other elements */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.8
+  ); /* Optional: Add a semi-transparent background */
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ff4d4d;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  background: transparent;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /****************************************************************************************************APPLY PAGE*****************************************************************************************************/
 .apply-page {
   position: relative;
@@ -571,38 +616,36 @@
 }
 /************************Status Pages*********************/
 /* ----- Pending ----- */
-.status-pending {
-  background: linear-gradient(135deg, #f0ad4e, #f7c873); /* orange/gold */
-  color: #fff;
-}
 
 .status-pending-card {
   border: 1px solid rgba(240, 173, 78, 0.4);
+  background-color: rgba(240, 173, 78, 0.4);
   animation: pulseGlow 2s infinite;
+  width: 90%;
+  height: 90%;
 }
 
 /* ----- Accepted ----- */
-.status-accepted {
-  background: linear-gradient(135deg, #5cb85c, #91e691); /* green shades */
-  color: #fff;
-}
 
 .status-accepted-card {
   border: 1px solid rgba(92, 184, 92, 0.4);
+  background-color: rgba(92, 184, 92, 0.4);
   box-shadow: 0 0 20px rgba(92, 184, 92, 0.3);
+  width: 90%;
+  height: 90%;
 }
 
 /* ----- Denied ----- */
-.status-denied {
-  background: linear-gradient(135deg, #d9534f, #ff7e79); /* red/pink */
-  color: #fff;
-}
 
 .status-denied-card {
   border: 1px solid rgba(217, 83, 79, 0.4);
   box-shadow: 0 0 20px rgba(217, 83, 79, 0.3);
+  background: linear-gradient(135deg, #d9534f, #ff7e79); /* red/pink */
+  color: #fff;
+  width: 90%;
+  height: 90%;
+  border-radius: 1.5rem; /* Rounded corners */
 }
-
 /* ----- Shared Animation ----- */
 @keyframes pulseGlow {
   0% {

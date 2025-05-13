@@ -8,26 +8,32 @@ import {
   handleApplySubmit,
 } from "../handlers/ApplyHandlers";
 import { handleStatusCheck } from "../handlers/ApplyHandlers"; // Import the status check handler
+import Loader from "../components/Loader"; // import the loader
 
 const Apply = () => {
   const { user, checking } = useAuth(); // Use directly from context
   const [formData, setFormData] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [applicationStatus, setApplicationStatus] = useState(null); // State for application status
+  const [statusLoading, setStatusLoading] = useState(true); // loading flag
 
   useEffect(() => {
+    setStatusLoading(true); // Start loading
     // If there's a user, check their application status
     const fetchStatus = async () => {
       if (user) {
         const status = await handleStatusCheck(); // Fetch the status
         setApplicationStatus(status); // Set the status in state
+        setStatusLoading(false); // Done loading
+      } else {
+        setStatusLoading(false); // No user, stop loading
       }
     };
 
     fetchStatus();
   }, [user]); // Only run when the user changes
 
-  if (checking) return null; // Optionally, show loading spinner or nothing while checking
+  if (checking || statusLoading) return <Loader />; // ⬅️ Show only loader during auth/status check
 
   // Logic to determine what to display based on user and application status
   return (
@@ -35,6 +41,7 @@ const Apply = () => {
       <div className="apply-content">
         <form
           className="apply-form"
+          id={sessionStorage.getItem("applicationStatus")}
           onSubmit={(e) => handleApplySubmit(e, formData, user, setSubmitting)}
         >
           {!user ? (
@@ -183,7 +190,7 @@ const Apply = () => {
                 className="apply-button"
                 disabled={submitting}
               >
-                {submitting ? "Submitting..." : "Submit Application"}
+                {submitting ? <Loader /> : "Submit Application"}
               </button>
             </>
           ) : (

@@ -5,41 +5,58 @@ const ApplyStatusOverlay = ({ status }) => {
   const globalName =
     JSON.parse(sessionStorage.getItem("user"))?.global_name || "Guest";
 
+  const isKnownStatus = ["pending", "accepted", "denied"].includes(status);
+
   return (
-    <div className={`apply-form-login-overlay status-${status}`}>
-      <div className={`apply-form status-${status}-card`}>
-        <h2 className="overlay-title">
-          {status === "pending"
-            ? "Application Under Review ⏳"
-            : status === "accepted"
-            ? "Congratulations 🎉"
-            : status === "denied"
-            ? "Application Denied ❌"
-            : "Checking Application Status..."}
-        </h2>
+    <div className={`apply-form status-${status}-card`}>
+      <h2 className="overlay-title">
+        {status === "pending"
+          ? "Application Under Review ⏳"
+          : status === "accepted"
+          ? "Congratulations 🎉"
+          : status === "denied"
+          ? "Application Denied ❌"
+          : "Checking Application Status..."}
+      </h2>
 
-        <p className="overlay-message">
-          Welcome back, <strong>{globalName}</strong>!<br />
-          {status === "pending" && (
-            <>Your application is currently under review.</>
-          )}
-          {status === "accepted" && (
-            <>You have been accepted! Please continue by logging in below.</>
-          )}
-          {status === "denied" && (
-            <>Unfortunately, your application was not approved.</>
-          )}
-        </p>
-
-        {(status === "accepted" || status === "denied") && (
-          <button className="discord-login-button" type="button">
-            <span className="discord-icon">
-              <FaDiscord />
-            </span>
-            Login with Discord
-          </button>
+      <p className="overlay-message">
+        Welcome back, <strong>{globalName}</strong>!<br />
+        {status === "pending" && (
+          <>Your application is currently under review.</>
         )}
-      </div>
+        {status === "accepted" && (
+          <>
+            <br />
+            Join the server below — our recruiters will be in touch soon. Feel
+            free to hop in a voice call and start getting to know everyone!
+          </>
+        )}
+        {status === "denied" && (
+          <>
+            Unfortunately, your application was not approved. <hr />
+            <a href="/appealForm" style={{ color: "blue", fontWeight: 400 }}>
+              click here if you would like to appeal.
+            </a>
+          </>
+        )}
+        {!isKnownStatus && (
+          <>
+            If this takes too long,{" "}
+            <a href="/helpticket" style={{ color: "#5865F2", fontWeight: 500 }}>
+              click here to get support.
+            </a>
+          </>
+        )}
+      </p>
+
+      {status === "accepted" && (
+        <button className="discord-login-button" type="button">
+          <span className="discord-icon">
+            <FaDiscord />
+          </span>
+          Login with Discord
+        </button>
+      )}
     </div>
   );
 };

@@ -19,11 +19,17 @@ export const handleStatusCheck = async () => {
       const status = response.data.status; // ✅ Get only the status string
       sessionStorage.setItem("applicationStatus", JSON.stringify(status));
       return status; // ✅ Return only the status string
+    } else if (response.status === 404) {
+      // Explicitly set sessionStorage to null when the application is not found
+      sessionStorage.setItem("applicationStatus", JSON.stringify(null));
+      console.warn("Application not found"); // Optional, to help with debugging
+      return null; // Return null to indicate no application found
     } else {
       throw new Error("Failed to fetch application status");
     }
   } catch (err) {
     console.error("Error fetching application status:", err);
+    sessionStorage.setItem("applicationStatus", JSON.stringify(null)); // Ensure null is set in case of error
     return null;
   }
 };
