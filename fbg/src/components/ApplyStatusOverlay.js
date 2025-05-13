@@ -27,8 +27,9 @@ const ApplyStatusOverlay = ({ status }) => {
         {status === "accepted" && (
           <>
             <br />
-            Join the server below — our recruiters will be in touch soon. Feel
-            free to hop in a voice call and start getting to know everyone!
+            Join the server below — If you are a new member our recruiters will
+            be in touch soon. Feel free to hop in a voice call and start getting
+            to know everyone!
           </>
         )}
         {status === "denied" && (
@@ -59,7 +60,7 @@ const ApplyStatusOverlay = ({ status }) => {
             <span className="discord-icon">
               <FaDiscord />
             </span>
-            Login with Discord
+            Join Discord Server
           </button>
         </a>
       )}

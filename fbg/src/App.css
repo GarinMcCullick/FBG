@@ -1,3 +1,36 @@
+/**********************************************************************************FLOATING EMOJI BACKGROUND*********************************************************/
+.floating-background {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.floating-png {
+  position: absolute;
+  opacity: 0;
+  animation-name: floatUp;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px); /* Float up a bit */
+    opacity: 0;
+  }
+}
 /****************************************************************************************************Nav Component*****************************************************************************************************/
 /* NAVBAR BASE */
 .nav {
@@ -79,14 +112,32 @@
 
 /* NAV LINK STYLES */
 .nav-links {
+  position: relative;
   color: white;
   text-decoration: none;
   font-size: 1.4rem;
   font-weight: 500;
   transition: color 0.3s ease;
+  padding-bottom: 4px;
 }
+
+.nav-links::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #00bcd4;
+  transition: width 0.3s ease;
+}
+
 .nav-links:hover {
   color: #00bcd4;
+}
+
+.nav-links:hover::after {
+  width: 100%;
 }
 
 /* TOGGLE ICON - HIDDEN ON DESKTOP */
@@ -192,12 +243,14 @@
 .landing-content h1 {
   font-size: 3rem;
   margin-bottom: 10px;
+  z-index: 1;
   animation: slideFadeUp 0.8s ease-out 0s; /* Add animation with no delay */
 }
 
 .landing-content p {
   font-size: 1.5rem;
   margin-bottom: 20px;
+  z-index: 1;
   animation: slideFadeUp 0.8s ease-out 0.3s; /* Add animation with a delay */
 }
 
@@ -212,6 +265,7 @@
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
+  z-index: 1;
   animation: slideFadeUp 0.8s ease-out 0.6s; /* Add animation with a longer delay */
 }
 

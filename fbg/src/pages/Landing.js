@@ -2,6 +2,12 @@ import React from "react";
 import "../App.css";
 import LandingGallerySlider from "../components/LandingGallerySlider";
 import { getQuoteOfTheDay } from "../helpers/quoteHelper";
+import FloatingEmojiBackground from "../components/FloatingEmojiBackground";
+import AK from "../assets/Assault_Rifle_icon.webp";
+import thompson from "../assets/Thompson_icon.webp";
+import m2 from "../assets/M249_icon.webp";
+import chestpiece from "../assets/Metal_Chest_Plate_icon.webp";
+import facemask from "../assets/Frostbite_icon.webp";
 
 const Landing = () => {
   const { quote, gamertag } = getQuoteOfTheDay();
@@ -19,6 +25,10 @@ const Landing = () => {
           </video>
         </div>
         <div className="landing-content">
+          <FloatingEmojiBackground
+            imageSrcs={[AK, thompson, m2, chestpiece, facemask]}
+            count={60}
+          />
           <h1>Welcome to FBG</h1>
           <p>Your journey starts here.</p>
           <a href="/apply" className="btn btn-primary">
