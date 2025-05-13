@@ -35,15 +35,12 @@ const ApplyStatusOverlay = ({ status }) => {
         {status === "denied" && (
           <>
             Unfortunately, your application was not approved. <hr />
-            <a href="/appealForm" style={{ color: "blue", fontWeight: 400 }}>
-              click here if you would like to appeal.
-            </a>
           </>
         )}
         {!isKnownStatus && (
           <>
             If this takes too long,{" "}
-            <a href="/helpticket" style={{ color: "#5865F2", fontWeight: 500 }}>
+            <a href="/ticket" style={{ color: "#5865F2", fontWeight: 500 }}>
               click here to get support.
             </a>
           </>
