@@ -41,7 +41,7 @@ const ApplyStatusOverlay = ({ status }) => {
           <>
             If this takes too long,{" "}
             <a href="/ticket" style={{ color: "#5865F2", fontWeight: 500 }}>
-              click here to get support.
+              click here to get support!
             </a>
           </>
         )}
