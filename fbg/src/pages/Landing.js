@@ -16,7 +16,14 @@ const Landing = () => {
     <div>
       <div className="landing-page">
         <div className="landing-video-banner">
-          <video autoPlay loop muted className="landing-video">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="landing-video"
+          >
             <source
               src={require("../assets/fbg-banner-video.mov")}
               type="video/mp4"
