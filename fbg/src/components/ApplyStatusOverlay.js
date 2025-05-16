@@ -27,23 +27,21 @@ const ApplyStatusOverlay = ({ status }) => {
         {status === "accepted" && (
           <>
             <br />
-            Join the server below — our recruiters will be in touch soon. Feel
-            free to hop in a voice call and start getting to know everyone!
+            Join the server below — If you are a new member our recruiters will
+            be in touch soon. Feel free to hop in a voice call and start getting
+            to know everyone!
           </>
         )}
         {status === "denied" && (
           <>
             Unfortunately, your application was not approved. <hr />
-            <a href="/appealForm" style={{ color: "blue", fontWeight: 400 }}>
-              click here if you would like to appeal.
-            </a>
           </>
         )}
         {!isKnownStatus && (
           <>
             If this takes too long,{" "}
-            <a href="/helpticket" style={{ color: "#5865F2", fontWeight: 500 }}>
-              click here to get support.
+            <a href="/ticket" style={{ color: "#5865F2", fontWeight: 500 }}>
+              click here to get support!
             </a>
           </>
         )}
@@ -59,7 +57,7 @@ const ApplyStatusOverlay = ({ status }) => {
             <span className="discord-icon">
               <FaDiscord />
             </span>
-            Login with Discord
+            Join Discord Server
           </button>
         </a>
       )}
