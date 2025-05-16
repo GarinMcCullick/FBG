@@ -12,7 +12,7 @@ const Landing = () => {
         <div className="landing-video-banner">
           <video autoPlay loop muted className="landing-video">
             <source
-              src={require("../assets/fbg-banner-video.mov")}
+              src={require("../assets/fbg-banner-video-optimized.mp4")}
               type="video/mp4"
             />
             Your browser does not support the video tag.
