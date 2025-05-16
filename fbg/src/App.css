@@ -2,7 +2,9 @@
 .floating-background {
   width: 100%;
   max-width: 100%;
+  height: 100%;
   overflow: hidden;
+  position: absolute;
 }
 .floating-png {
   position: absolute;
@@ -472,6 +474,44 @@
   color: #ff4d4d;
   transform: scale(1.1);
 }
+
+/* --------- MOBILE FIXES --------- */
+@media (max-width: 768px) {
+  .gallery-wrapper {
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  .collage-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .collage-tile {
+    min-width: unset; /* Let it shrink naturally */
+  }
+
+  .modal-content {
+    padding: 10px;
+    max-width: 95%;
+    max-height: 85%;
+  }
+
+  .close-modal {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+  }
+
+  .collage-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
+
 /******************************************************************************************************LOADER *********************************************/
 .loader-container {
   display: flex;
